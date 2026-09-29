@@ -465,8 +465,13 @@ else b.textContent='Générer '+state.images.length+' vidéo'+(state.images.leng
 }
 
 function initStyles(){
+try{
 renderStyles('stylesGridImage',state.imageStyle,(id)=>{state.imageStyle=id;});
 renderStyles('stylesGridVideo',state.videoStyle,(id)=>{state.videoStyle=id;});
+}catch(e){
+console.log('Erreur initStyles:',e);
+}
+}
 }
 </script>
 <script>
@@ -607,7 +612,7 @@ setStatus('Arrêt…');
 
 (function init(){
 initTabs();
-initStyles();
+if(typeof initStyles === 'function') initStyles();
 
 $('genText').addEventListener('click',generateText);
 $('textStyle').addEventListener('change',e=>{state.textStyle=e.target.value;});
