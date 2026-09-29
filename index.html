@@ -612,7 +612,7 @@ setStatus('Arrêt…');
 
 (function init(){
 initTabs();
-if(typeof initStyles === 'function') initStyles();
+initStyles();
 
 $('genText').addEventListener('click',generateText);
 $('textStyle').addEventListener('change',e=>{state.textStyle=e.target.value;});
