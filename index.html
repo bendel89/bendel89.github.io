@@ -168,12 +168,12 @@ button.primary:disabled{opacity:0.35;cursor:not-allowed}
 <span id="toastText">Message</span>
 </div>
 <script>
-const API_KEY = 'sk-ehDnO3jrZD6FLJF1jxPzfkmF0SdYdaP419ZlPtPYn4ubeDjH';
+const API_KEY = 'sk-M00AWyCVwAbxcjJ7cuGHIvsHOEAwds7uj3B9ihV2B2UTU1ee';
 const API_BASE = 'https://apihub.agnes-ai.com/v1';
 const POLL_BASE = 'https://apihub.agnes-ai.com/agnesapi';
-const MODEL_VIDEO = 'agnes-video-v2.0';
-const MODEL_IMAGE = 'agnes-image-v2.0';
-const MODEL_TEXT = 'const MODEL_TEXT = 'agnes-2.5-flash';
+const MODEL_VIDEO =    'agnes-video-v2.0';
+const MODEL_IMAGE = 'agnes-image-2.5-flash';
+const MODEL_TEXT = 'agnes-2.5-flash';
 const FRAME_RATE = 24;
 const POLL_INTERVAL_SEC = 8;
 const MAX_POLL_ATTEMPTS = 100;
@@ -260,7 +260,7 @@ return fetch(url,opts);
 
 const TEXT_STYLES={
 neutral:'Réponds de manière claire et neutre.',
-cinematic:'Écris de manière cinématographique, avec des descriptions visuelles fortes et une ambiance de film.',
+cinematic:'Écris de manière cinématographique, avec des descriptions visuelles fortes.',
 poetic:'Écris de manière poétique, avec des métaphores et un rythme musical.',
 funny:'Écris de manière humoristique, avec des jeux de mots.',
 dramatic:'Écris de manière dramatique, avec de la tension et des émotions fortes.',
@@ -301,7 +301,6 @@ const data=await res.json();
 const text=(data.choices&&data.choices[0]&&data.choices[0].message&&data.choices[0].message.content)||'';
 if(!text)throw new Error('Réponse vide');
 $('textResult').innerHTML='<div class="result">'+esc(text)+'</div>';
-addToGallery('text',text,'Texte — '+prompt.slice(0,40));
 toast('Texte généré ✓');
 }catch(e){
 toast('Erreur : '+e.message,'error',4000);
@@ -310,7 +309,7 @@ btn.disabled=false;btn.textContent='Générer le texte';
 setStatus(null);
 }
 }
-</script> 
+</script>
 <script>
 function renderStyles(containerId,current,onSelect){
 const c=$(containerId); if(!c)return;
@@ -465,13 +464,8 @@ else b.textContent='Générer '+state.images.length+' vidéo'+(state.images.leng
 }
 
 function initStyles(){
-try{
 renderStyles('stylesGridImage',state.imageStyle,(id)=>{state.imageStyle=id;});
 renderStyles('stylesGridVideo',state.videoStyle,(id)=>{state.videoStyle=id;});
-}catch(e){
-console.log('Erreur initStyles:',e);
-}
-}
 }
 </script>
 <script>
@@ -634,4 +628,3 @@ log('Studio Créatif prêt.');
 </script>
 </body>
 </html>
-  
